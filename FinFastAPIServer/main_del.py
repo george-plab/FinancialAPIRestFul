@@ -104,7 +104,7 @@ class DataNormalizer:
         cols_lower = [str(c).lower().strip() for c in df.columns]
         
         # Patrón para columnas de años
-        year_pattern = re.compile(r'^a?\d{4}
+        year_pattern = re.compile(r'^a?\d{4}$')
 
 class DataStore:
     """Gestión centralizada de datos en memoria"""
@@ -222,6 +222,77 @@ def analyze_financial_data(csv_data, analysis_type="all", **params):
 # ============================================================================
 # ENDPOINTS
 # ============================================================================
+
+@app.get("/")
+def root():
+    """API root - información general"""
+    return {
+        "name": "Financial Analysis API",
+        "version": "2.0",
+        "endpoints": {
+            "normalize": "/api/normalize",
+            "csvs": "/api/csvs",
+            "analyses": "/api/analyses"
+        }
+    }
+
+
+@app.post("/api/normalize")
+async def normalize_data(request: NormalizeRequest):
+    """
+    POST /api/normalize - Normalizar datos crudos
+    
+    Body:
+    {
+        "data": [{...}, {...}],  // Datos crudos del Excel
+        "mapping": {              // Opcional: mapeo de columnas
+            "date_column": "fecha_transaccion",
+            "amount_column": "monto",
+            "category_column": "tipo",
+            "concept_column": "descripcion",
+            "debit_column": "debe",
+            "credit_column": "haber"
+        },
+        "rules": {                // Opcional: reglas de transformación
+            "unpivot": true,
+            "unpivot_year_columns": ["a2020", "a2021", "a2022"],
+            "debe_haber": true,
+            "invert_negatives": false,
+            "detect_format": true,
+            "drop_empty_rows": true,
+            "drop_empty_columns": true
+        }
+    }
+    
+    Response:
+    {
+        "normalized_data": [{...}, {...}],
+        "format_detected": "transactional",
+        "confidence": 0.95,
+        "warnings": ["..."],
+        "transformations_applied": ["..."],
+        "columns": ["fecha", "importe", "categoria"],
+        "rows": 120
+    }
+    """
+    try:
+        # Convertir Pydantic models a dicts
+        mapping_dict = request.mapping.dict() if request.mapping else {}
+        rules_dict = request.rules.dict() if request.rules else {}
+        
+        # Normalizar
+        result = DataNormalizer.normalize(
+            data=request.data,
+            mapping=mapping_dict,
+            rules=rules_dict
+        )
+        
+        return clean(jsonable_encoder(result))
+        
+    except Exception as e:
+        logger.exception("Error in normalization")
+        raise HTTPException(status_code=500, detail=f"Normalization error: {str(e)}")
+
 
 @app.get("/")
 def root():
