@@ -1,0 +1,9 @@
+fastapi
+python-multipart
+uvicorn
+datetime
+pandas
+python-dotenv
+pydantic
+IPython
+logging

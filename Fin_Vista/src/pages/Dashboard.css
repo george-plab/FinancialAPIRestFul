@@ -1,0 +1,130 @@
+/**
+ * Dashboard-specific styles
+ * Common page styles are in pages/styles.css
+ */
+
+/* KPI Section */
+.kpi-section {
+    width: 100%;
+}
+
+.kpi-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--spacing-lg);
+}
+
+/* Charts Section */
+.charts-section {
+    width: 100%;
+}
+
+.charts-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--spacing-lg);
+}
+
+.charts-grid>*:first-child {
+    grid-column: span 2;
+}
+
+/* Report Section */
+.report-section {
+    width: 100%;
+}
+
+/* Demo Banner */
+.demo-banner {
+    background: linear-gradient(135deg, rgba(0, 200, 83, 0.15), rgba(0, 168, 68, 0.1));
+    border: 1px solid var(--color-primary);
+    border-radius: var(--radius-md);
+    padding: var(--spacing-md) var(--spacing-lg);
+    color: var(--color-primary);
+    font-weight: 500;
+    text-align: center;
+    margin-bottom: var(--spacing-md);
+}
+
+/* Data Banner (real data loaded) */
+.data-banner {
+    background: linear-gradient(135deg, rgba(33, 150, 243, 0.15), rgba(30, 136, 229, 0.1));
+    border: 1px solid var(--color-info);
+    border-radius: var(--radius-md);
+    padding: var(--spacing-md) var(--spacing-lg);
+    color: var(--color-info);
+    font-weight: 500;
+    text-align: center;
+    margin-bottom: var(--spacing-md);
+}
+
+/* Warning Banner */
+.warning-banner {
+    background: rgba(255, 193, 7, 0.1);
+    border: 1px solid var(--color-warning);
+    border-radius: var(--radius-md);
+    padding: var(--spacing-md) var(--spacing-lg);
+    color: var(--color-warning);
+    margin-bottom: var(--spacing-md);
+}
+
+.warning-banner ul {
+    list-style: none;
+    padding: 0;
+    margin: var(--spacing-sm) 0 0;
+}
+
+.warning-banner li {
+    color: var(--color-text-secondary);
+    font-size: var(--font-size-sm);
+    padding: var(--spacing-xs) 0;
+}
+
+/* Chart Wrapper */
+.chart-wrapper {
+    background: var(--color-bg-card);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    padding: var(--spacing-lg);
+    min-height: 350px;
+    max-height: 450px;
+    height: 400px;
+}
+
+.chart-status {
+    font-size: var(--font-size-sm);
+    color: var(--color-text-secondary);
+    margin-bottom: var(--spacing-md);
+    font-weight: 500;
+}
+
+/* Responsive */
+@media (max-width: 1400px) {
+    .kpi-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .charts-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .charts-grid>*:first-child {
+        grid-column: span 2;
+    }
+}
+
+@media (max-width: 1024px) {
+    .charts-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .charts-grid>*:first-child {
+        grid-column: span 1;
+    }
+}
+
+@media (max-width: 768px) {
+    .kpi-grid {
+        grid-template-columns: 1fr;
+    }
+}

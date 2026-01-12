@@ -1,0 +1,72 @@
+{
+    "yearly_summary": {
+        "year": 2025,
+        "total_income": 15000,
+        "total_expenses": 5000,
+        "net_result": 10000,
+        "currency": "EUR"
+    },
+
+    "monthly_summary": {
+        "months": [
+        {
+            "month": "2025-01",
+            "income": 10000,
+            "expenses": 3000,
+            "net": 7000
+        },
+        {
+            "month": "2025-02",
+            "income": 5000,
+            "expenses": 2000,
+            "net": 3000
+        }
+        ],
+        "totals": {
+        "income": 15000,
+        "expenses": 5000,
+        "net": 10000
+        }
+    },
+
+    "budget_variance": {
+        "by_category": [
+        {
+            "category": "Marketing",
+            "budgeted": 2000,
+            "actual": 2500,
+            "variance": 500,
+            "variance_pct": 25.0
+        },
+        {
+            "category": "Operaciones",
+            "budgeted": 3000,
+            "actual": 2500,
+            "variance": -500,
+            "variance_pct": -16.7
+        }
+        ],
+        "total_variance": 0
+    },
+
+    "cash_flow": {
+        "initial_balance": 1000,
+        "periods": [
+        {
+            "date": "2025-01-31",
+            "inflow": 10000,
+            "outflow": 3000,
+            "net_flow": 7000,
+            "ending_balance": 8000
+        },
+        {
+            "date": "2025-02-28",
+            "inflow": 5000,
+            "outflow": 2000,
+            "net_flow": 3000,
+            "ending_balance": 11000
+        }
+        ],
+        "final_balance": 11000
+    }
+    }
